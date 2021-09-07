@@ -1,7 +1,7 @@
-# podman-nvidia-cuda-opencl-tensorflow-2.5.0-gpu-jupyter
-The test results with the latest TensorFlow-2.5.0 nightly local build with the latest Nvidia Tensor RT 7.2.1.6 running on the old GPU with capability 5.0 look promising.
-Previously created docker with the latest Nvidia CUDA SDK 11.1 and cuDNN 8.0.4 was used for the build, took more than 4.5 hours, probably due to capabilities chosen [5.0, 6.1, 7.5, 8.0, 8.6] to cover K620, GTX1080ti, RTX2080, A100 and RTX3090 respectively.
-The Jupyter execution results of the example distributed training keras.ipynb are below as well as screenshots from the tensorboard. While it is running via Docker on Fedora 31, the next step is to test it via Podman on Fedora 32 with auto-start of the container that exposes a port for SSH access.
+# podman-nvidia-tensorRT-cuda-opencl-tensorflow-2.6.0-gpu-jupyter
+The test results with the latest TensorFlow-2.6.0 local build with the latest Nvidia Tensor RT 8.0.1.6 running on the old GPU with capability 5.0 look promising.
+Previously created docker with the latest Nvidia CUDA SDK 11.4 and cuDNN 8.2.2 was used for the build, took more than 4.5 hours, probably due to capabilities chosen [5.0, 6.1, 7.5, 8.0, 8.6] to cover K620, GTX1080ti, RTX2080, A100 and RTX3090 respectively.
+The Jupyter execution results of the example distributed training keras.ipynb are below as well as screenshots from the tensorboard. Tested with Podman on Fedora 33 only with sudo, the next step is to try tensorflow_cc and test it root-less (no sudo) via Podman on Fedora 34 with auto-start of the container that exposes a port for SSH access.
 
 ![keras_training](./keras_training.jpeg)
 
@@ -96,7 +96,7 @@ datasets, info = tfds.load(name='mnist', with_info=True, as_supervised=True)
 mnist_train, mnist_test = datasets['train'], datasets['test']
 ```
 
-    [1mDownloading and preparing dataset mnist/3.0.1 (download: 11.06 MiB, generated: 21.00 MiB, total: 32.06 MiB) to /root/tensorflow_datasets/mnist/3.0.1...[0m
+    Downloading and preparing dataset mnist/3.0.1 (download: 11.06 MiB, generated: 21.00 MiB, total: 32.06 MiB) to /root/tensorflow_datasets/mnist/3.0.1...
 
 
     WARNING:absl:Dataset mnist is hosted on GCS. It will automatically be downloaded to your
@@ -112,7 +112,7 @@ mnist_train, mnist_test = datasets['train'], datasets['test']
 
     
     
-    [1mDataset mnist downloaded and prepared to /root/tensorflow_datasets/mnist/3.0.1. Subsequent calls will reuse this data.[0m
+    Dataset mnist downloaded and prepared to /root/tensorflow_datasets/mnist/3.0.1. Subsequent calls will reuse this data.
 
 
 ## Define distribution strategy
